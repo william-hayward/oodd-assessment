@@ -1,0 +1,14 @@
+org\solent\com504\oodd\bank\client\model\dto\BankAccount.class
+org\solent\com504\oodd\bank\client\model\dto\User.class
+org\solent\com504\oodd\bank\client\impl\BankRestClientImpl.class
+org\solent\com504\oodd\bank\client\cardcheck\CardCompany.class
+org\solent\com504\oodd\bank\client\model\dto\TransactionReplyMessage.class
+org\solent\com504\oodd\bank\client\cardcheck\CalculateLunnDigit.class
+org\solent\com504\oodd\bank\client\model\dto\BankTransactionStatus.class
+org\solent\com504\oodd\bank\client\password\PasswordUtils.class
+org\solent\com504\oodd\bank\client\model\dto\CreditCard.class
+org\solent\com504\oodd\bank\client\cardcheck\CardValidationResult.class
+org\solent\com504\oodd\bank\client\model\dto\TransactionRequestMessage.class
+org\solent\com504\oodd\bank\client\cardcheck\RegexCardValidator.class
+org\solent\com504\oodd\bank\client\model\client\BankRestClient.class
+org\solent\com504\oodd\bank\client\model\dto\BankTransaction.class
