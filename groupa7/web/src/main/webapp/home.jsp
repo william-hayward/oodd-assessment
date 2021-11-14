@@ -9,6 +9,8 @@
 <%@page import="org.solent.com504.oodd.web.properties.PropertiesFileFactory"%>
 <%@page import="org.solent.com504.oodd.web.properties.PropertiesDaoFile"%>
 <%@page import="org.solent.com504.oodd.web.logger.Logger"%>
+<%@page import="org.solent.com504.oodd.bank.client.cardcheck.CardValidationResult" %>
+<%@page import="org.solent.com504.oodd.bank.client.cardcheck.RegexCardValidator" %>
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -16,6 +18,8 @@
     request.setAttribute("selectedPage", "home");
 
     PropertiesDaoFile propertiesDaoFile = PropertiesFileFactory.getPropertiesDaoFile();
+
+
 
     String cardno = (String) request.getParameter("cardno");
     String cardfromname = (String) request.getParameter("cardfromname");
@@ -55,9 +59,24 @@
 
         // do the transfer
         TransactionReplyMessage query = rester.transferMoney(fromCard, toCard, Double.valueOf(amount));
+        
+        String transactionMessage = "";
+        TransactionReplyMessage transactionReplyMessage = new TransactionReplyMessage();
+        transactionMessage = transactionReplyMessage.toString();
+       
 
-        String logmsg = "Transaction complete with card" + " " + cardno + " " + "for the amount of" + " " + amount;
-        Logger.Logger(logmsg);
+        CardValidationResult result = RegexCardValidator.isValid(cardno);
+        String errormessage = "";
+        errormessage = result.getError();
+        
+        if (errormessage == null) {
+
+            String logmsg = "Transaction complete with card" + " " + cardno + " " + "for the amount of" + " " + amount;
+            Logger.Logger(logmsg);
+        } else {
+            String logmsg = "Transaction was unsuccessful with card" + " " + cardno + " " + "for the amount of" + " " + amount;
+            Logger.Logger(logmsg);
+        }
     }
     if ("submitdetails".equals(action)) {
         message = "transaction sending";

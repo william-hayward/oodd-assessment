@@ -9,6 +9,9 @@
 <%@page import="org.solent.com504.oodd.bank.client.model.dto.TransactionReplyMessage"%>
 <%@page import="org.solent.com504.oodd.web.properties.PropertiesFileFactory"%>
 <%@page import="org.solent.com504.oodd.web.properties.PropertiesDaoFile"%>
+<%@page import="org.solent.com504.oodd.web.logger.Logger"%>
+<%@page import="org.solent.com504.oodd.bank.client.cardcheck.CardValidationResult" %>
+<%@page import="org.solent.com504.oodd.bank.client.cardcheck.RegexCardValidator" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
@@ -22,9 +25,15 @@
     String cardtocvv = propertiesDaoFile.getProperty("org.solent.com504.oodd.web.cardtocvv");
     String url = propertiesDaoFile.getProperty("org.solent.com504.oodd.web.url");
 
+    String cardno = (String) request.getParameter("cardno");
+
+    String amount = request.getParameter("amount");
+
     // rest client
     BankRestClientImpl rester = new BankRestClientImpl(url);
     CreditCard toCard = new CreditCard();
+    CreditCard fromCard = new CreditCard();
+
     String message = "";
 
     // get the action
@@ -48,6 +57,35 @@
         toCard.setCvv(cardtocvv);
         message = "bank details are set";
         // do the transfer
+    }
+
+    if ("submitrefund".equals(action)) {
+
+        fromCard.setCardnumber(cardto);
+
+        toCard.setCardnumber(cardno);
+
+        TransactionReplyMessage query = rester.transferMoney(fromCard, toCard, Double.valueOf(amount));
+
+        String transactionMessage = "";
+        TransactionReplyMessage transactionReplyMessage = new TransactionReplyMessage();
+        transactionMessage = transactionReplyMessage.toString();
+
+        message = "refund sent";
+
+        CardValidationResult result = RegexCardValidator.isValid(cardno);
+        String errormessage = "";
+        errormessage = result.getError();
+
+        if (errormessage == null) {
+
+            String logmsg = "Refund complete with card" + " " + cardno + " " + "for the amount of" + " " + amount;
+            Logger.Logger(logmsg);
+        } else {
+            String logmsg = "Refund was unsuccessful with card" + " " + cardno + " " + "for the amount of" + " " + amount;
+            Logger.Logger(logmsg);
+        }
+
     }
 
     if ("submiturl".equals(action)) {
@@ -89,6 +127,21 @@
 
 
                 <input type="hidden" name="action" value="submitadmindetails">
+                <button type="submit" id="submit" >Submit</button>
+
+                <p id="erroroutput"></p>
+            </form>
+
+            <h1>Refund Details</h1>
+
+            <form action="./admin.jsp" method="post" id="transactionform" onsubmit="return validate()">
+                The Card Number: <input type="text" name="cardno" maxlength="16" value="<%=cardno%>"/> <br>
+
+                Amount: <input type="text" name="amount" value="<%=amount%>"/>
+
+
+
+                <input type="hidden" name="action" value="submitrefund">
                 <button type="submit" id="submit" >Submit</button>
 
                 <p id="erroroutput"></p>
