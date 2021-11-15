@@ -29,70 +29,73 @@
 
     String amount = request.getParameter("amount");
 
-    // rest client
-    BankRestClientImpl rester = new BankRestClientImpl(url);
-    CreditCard toCard = new CreditCard();
-    CreditCard fromCard = new CreditCard();
-
     String message = "";
 
-    // get the action
-    String action = (String) request.getParameter("action");
-    if ("submitadmindetails".equals(action)) {
+    try {
+// rest client
+        BankRestClientImpl rester = new BankRestClientImpl(url);
+        CreditCard toCard = new CreditCard();
+        CreditCard fromCard = new CreditCard();
 
-        cardto = (String) request.getParameter("cardto");
-        cardtoname = (String) request.getParameter("cardtoname");
-        cardtoexpdate = (String) request.getParameter("cardtoexpdate");
-        cardtocvv = (String) request.getParameter("cardtocvv");
+        // get the action
+        String action = (String) request.getParameter("action");
+        if ("submitadmindetails".equals(action)) {
 
-        propertiesDaoFile.setProperty("org.solent.com504.oodd.web.cardto", cardto);
-        propertiesDaoFile.setProperty("org.solent.com504.oodd.web.cardtoname", cardtoname);
-        propertiesDaoFile.setProperty("org.solent.com504.oodd.web.cardtoexpdate", cardtoexpdate);
-        propertiesDaoFile.setProperty("org.solent.com504.oodd.web.cardtocvv", cardtocvv);
+            cardto = (String) request.getParameter("cardto");
+            cardtoname = (String) request.getParameter("cardtoname");
+            cardtoexpdate = (String) request.getParameter("cardtoexpdate");
+            cardtocvv = (String) request.getParameter("cardtocvv");
 
-        // set numbers
-        toCard.setCardnumber(cardto);
-        toCard.setName(cardtoname);
-        toCard.setEndDate(cardtoexpdate);
-        toCard.setCvv(cardtocvv);
-        message = "bank details are set";
-        // do the transfer
-    }
+            propertiesDaoFile.setProperty("org.solent.com504.oodd.web.cardto", cardto);
+            propertiesDaoFile.setProperty("org.solent.com504.oodd.web.cardtoname", cardtoname);
+            propertiesDaoFile.setProperty("org.solent.com504.oodd.web.cardtoexpdate", cardtoexpdate);
+            propertiesDaoFile.setProperty("org.solent.com504.oodd.web.cardtocvv", cardtocvv);
 
-    if ("submitrefund".equals(action)) {
-
-        fromCard.setCardnumber(cardto);
-
-        toCard.setCardnumber(cardno);
-
-        TransactionReplyMessage query = rester.transferMoney(fromCard, toCard, Double.valueOf(amount));
-
-        String transactionMessage = "";
-        TransactionReplyMessage transactionReplyMessage = new TransactionReplyMessage();
-        transactionMessage = transactionReplyMessage.toString();
-
-        message = "refund sent";
-
-        CardValidationResult result = RegexCardValidator.isValid(cardno);
-        String errormessage = "";
-        errormessage = result.getError();
-
-        if (errormessage == null) {
-
-            String logmsg = "Refund complete with card" + " " + cardno + " " + "for the amount of" + " " + amount;
-            Logger.Logger(logmsg);
-        } else {
-            String logmsg = "Refund was unsuccessful with card" + " " + cardno + " " + "for the amount of" + " " + amount;
-            Logger.Logger(logmsg);
+            // set numbers
+            toCard.setCardnumber(cardto);
+            toCard.setName(cardtoname);
+            toCard.setEndDate(cardtoexpdate);
+            toCard.setCvv(cardtocvv);
+            message = "bank details are set";
+            // do the transfer
         }
 
-    }
+        if ("submitrefund".equals(action)) {
 
-    if ("submiturl".equals(action)) {
-        message = "url for the bank is set";
-        url = (String) request.getParameter("url");
-        propertiesDaoFile.setProperty("org.solent.com504.oodd.web.url", url);
-        rester = new BankRestClientImpl(url);
+            fromCard.setCardnumber(cardto);
+
+            toCard.setCardnumber(cardno);
+
+            TransactionReplyMessage query = rester.transferMoney(fromCard, toCard, Double.valueOf(amount));
+
+            String transactionMessage = "";
+            TransactionReplyMessage transactionReplyMessage = new TransactionReplyMessage();
+            transactionMessage = transactionReplyMessage.toString();
+
+            String errormessage = "";
+            errormessage = query.getMessage();
+
+            if (errormessage == null) {
+
+                String logmsg = "Refund complete with card" + " " + cardno + " " + "for the amount of" + " " + amount;
+                Logger.Logger(logmsg);
+                message = "refund complete";
+            } else {
+                String logmsg = "Refund was unsuccessful with card" + " " + cardno + " " + "for the amount of" + " " + amount + "." + "Error message: " + errormessage;
+                Logger.Logger(logmsg);
+                message = "refund was unsuccessful, Error:" + errormessage;
+            }
+
+        }
+
+        if ("submiturl".equals(action)) {
+            message = "url for the bank is set";
+            url = (String) request.getParameter("url");
+            propertiesDaoFile.setProperty("org.solent.com504.oodd.web.url", url);
+            rester = new BankRestClientImpl(url);
+        }
+    } catch (Exception e) {
+        message = "Error connecting to website, please check the url to the website";
     }
 
 %>

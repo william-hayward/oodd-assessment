@@ -17,7 +17,7 @@
     String adminusername = propertiesDaoFile.getProperty("org.solent.com504.oodd.web.adminusername");
     String adminpassword = propertiesDaoFile.getProperty("org.solent.com504.oodd.web.adminpassword");
 
-    if ("savedetails".equals(action)) {
+    if ("submitdetails".equals(action)) {
         adminusername = (String) request.getParameter("adminusername");
         adminpassword = (String) request.getParameter("adminpassword");
 

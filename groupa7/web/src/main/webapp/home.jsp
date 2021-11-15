@@ -3,6 +3,8 @@
     Created on : 11 Nov 2021, 19:30:02
     Author     : Sophia
 --%>
+
+<%@page import="java.io.IOException"%>
 <%@page import="org.solent.com504.oodd.bank.client.model.dto.CreditCard"%>
 <%@page import="org.solent.com504.oodd.bank.client.impl.BankRestClientImpl"%>
 <%@page import="org.solent.com504.oodd.bank.client.model.dto.TransactionReplyMessage"%>
@@ -11,6 +13,8 @@
 <%@page import="org.solent.com504.oodd.web.logger.Logger"%>
 <%@page import="org.solent.com504.oodd.bank.client.cardcheck.CardValidationResult" %>
 <%@page import="org.solent.com504.oodd.bank.client.cardcheck.RegexCardValidator" %>
+<%@page import="org.solent.com504.oodd.bank.client.model.dto.BankTransaction" %>
+
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -18,8 +22,6 @@
     request.setAttribute("selectedPage", "home");
 
     PropertiesDaoFile propertiesDaoFile = PropertiesFileFactory.getPropertiesDaoFile();
-
-
 
     String cardno = (String) request.getParameter("cardno");
     String cardfromname = (String) request.getParameter("cardfromname");
@@ -34,57 +36,61 @@
 
     String amount = request.getParameter("amount");
 
-    // rest client
-    BankRestClientImpl rester = new BankRestClientImpl(url);
-    CreditCard fromCard = new CreditCard();
-    CreditCard toCard = new CreditCard();
-
     String message = "";
 
-    // get the action
-    String action = (String) request.getParameter("action");
+    // rest client
+    try {
+        BankRestClientImpl rester = new BankRestClientImpl(url);
+        CreditCard fromCard = new CreditCard();
+        CreditCard toCard = new CreditCard();
 
-    if ("submitdetails".equals(action)) {
+        // get the action
+        String action = (String) request.getParameter("action");
 
-        // set numbers
-        fromCard.setCardnumber(cardno);
-        fromCard.setName(cardfromname);
-        fromCard.setEndDate(cardfromexpdate);
-        fromCard.setCvv(cardfromcvv);
+        if ("submitdetails".equals(action)) {
 
-        toCard.setCardnumber(cardto);
-        toCard.setName(cardtoname);
-        toCard.setEndDate(cardtoexpdate);
-        toCard.setCvv(cardtocvv);
+            // set numbers
+            fromCard.setCardnumber(cardno);
+            fromCard.setName(cardfromname);
+            fromCard.setEndDate(cardfromexpdate);
+            fromCard.setCvv(cardfromcvv);
 
-        // do the transfer
-        TransactionReplyMessage query = rester.transferMoney(fromCard, toCard, Double.valueOf(amount));
-        
-        String transactionMessage = "";
-        TransactionReplyMessage transactionReplyMessage = new TransactionReplyMessage();
-        transactionMessage = transactionReplyMessage.toString();
-       
+            toCard.setCardnumber(cardto);
+            toCard.setName(cardtoname);
+            toCard.setEndDate(cardtoexpdate);
+            toCard.setCvv(cardtocvv);
 
-        CardValidationResult result = RegexCardValidator.isValid(cardno);
-        String errormessage = "";
-        errormessage = result.getError();
-        
-        if (errormessage == null) {
+            // do the transfer
+            TransactionReplyMessage query = rester.transferMoney(fromCard, toCard, Double.valueOf(amount));
 
-            String logmsg = "Transaction complete with card" + " " + cardno + " " + "for the amount of" + " " + amount;
-            Logger.Logger(logmsg);
-        } else {
-            String logmsg = "Transaction was unsuccessful with card" + " " + cardno + " " + "for the amount of" + " " + amount;
-            Logger.Logger(logmsg);
+            String transactionMessage = "";
+            TransactionReplyMessage transactionReplyMessage = new TransactionReplyMessage();
+            transactionMessage = transactionReplyMessage.toString();
+
+            String errormessage = "";
+            errormessage = query.getMessage();
+
+            if (errormessage == null) {
+
+                String logmsg = "Transaction complete with card" + " " + cardno + " " + "for the amount of" + " " + amount;
+                Logger.Logger(logmsg);
+                message = "transaction sending";
+            } else {
+                String logmsg = "Transaction was unsuccessful with card" + " " + cardno + " " + "for the amount of" + " " + amount + "." + "Error message: " + errormessage;
+                Logger.Logger(logmsg);
+                message = "transaction failed, Error:" + errormessage;
+            }
         }
-    }
-    if ("submitdetails".equals(action)) {
-        message = "transaction sending";
-        cardto = (String) request.getParameter("cardto");
-        cardtoname = (String) request.getParameter("cardtoname");
-        cardtoexpdate = (String) request.getParameter("cardtoexpdate");
-        cardtocvv = (String) request.getParameter("cardtocvv");
+        if ("submitdetails".equals(action)) {
 
+            cardto = (String) request.getParameter("cardto");
+            cardtoname = (String) request.getParameter("cardtoname");
+            cardtoexpdate = (String) request.getParameter("cardtoexpdate");
+            cardtocvv = (String) request.getParameter("cardtocvv");
+
+        }
+    } catch (Exception e) {
+        message = "Error connecting to website, please contact admin";
     }
 %>
 <main role="main" class="container">
