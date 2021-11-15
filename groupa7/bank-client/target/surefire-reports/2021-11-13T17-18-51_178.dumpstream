@@ -1,0 +1,4 @@
+# Created at 2021-11-13T17:18:51.521
+Boot Manifest-JAR contains absolute paths in classpath 'E:\Documents\OODD\oodd-assessment-Theo\groupa7\bank-client\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+
