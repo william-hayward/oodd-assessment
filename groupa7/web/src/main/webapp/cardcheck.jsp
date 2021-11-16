@@ -13,20 +13,35 @@
 
     CardValidationResult result = RegexCardValidator.isValid(creditcardno);
 %>
-
-<!DOCTYPE html>
-<html>
+<jsp:include page="header.jsp" />
+<main role="main" class="container">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Credit Card Check</title>
+        <link rel="stylesheet" href="./resources/css/numpad-dark.css"/>
+            <script src="./resources/js/numpad.js"></script>
     </head>
     <body>
         <h1>Credit Card Check</h1>
         <form action="./cardcheck.jsp" method="post">
-            <input type="text" name="creditcardno" value="<%=creditcardno%>">
+            <input type="text" id="cardno" name="creditcardno" value="<%=creditcardno%>">
             <input type="hidden" name="action" value="removeUser">
             <button type="submit" >Check Card</button>
         </form>
+            
+        <script>
+            window.addEventListener("load", () => {
+
+            // numpad
+            numpad.attach({
+            target: document.getElementById("cardno"),
+                max: 16, // MAX 16 DIGITS
+                decimal: false, // NO DECIMALS ALLOWED
+       
+            });
+            });
+    
+        </script>
 
         <% if (result.isValid()) {%>
         <p>"<%= result.getCardNo()%>" is a valid card number issued by  <%= result.getCardType()%> </p>
@@ -43,4 +58,5 @@
         <p>Go back to Index Page</P>
         <a href="./index.html" target="_blank" >Go back</a>
     </body>
-</html>
+</main>
+<jsp:include page="footer.jsp" />

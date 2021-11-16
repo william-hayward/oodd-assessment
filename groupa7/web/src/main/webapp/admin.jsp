@@ -99,12 +99,13 @@
     }
 
 %>
+<jsp:include page="header.jsp" />
 <main role="main" class="container">
-    <!DOCTYPE html>
-    <html>
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <title>JSP Page</title>
+            <link rel="stylesheet" href="./resources/css/numpad-dark.css"/>
+            <script src="./resources/js/numpad.js"></script>
         </head>
         <body>
             <h1>Admin Details</h1>
@@ -121,7 +122,7 @@
 
             <form action="./admin.jsp" method="post" id="adminform" onsubmit="return validate()">
 
-                To CreditCard: <input type="text" name="cardto" maxlength="16" value="<%=cardto%>"/> <br>
+                To CreditCard: <input type="text" id="cardno" name="cardto" maxlength="16" value="<%=cardto%>"/> <br>
                 Name on Card: <input type="text" name="cardtoname" value="<%=cardtoname%>"/> <br>
                 Expiry date: <input type="text" name="cardtoexpdate" value="<%=cardtoexpdate%>"/> <br>
                 CVV code: <input type="text" name="cardtocvv" maxlength="3" value="<%=cardtocvv%>"/> <br>
@@ -138,7 +139,7 @@
             <h1>Refund Details</h1>
 
             <form action="./admin.jsp" method="post" id="transactionform" onsubmit="return validate()">
-                The Card Number: <input type="text" name="cardno" maxlength="16" value="<%=cardno%>"/> <br>
+                The Card Number: <input type="text" id="cardno2" name="cardno" maxlength="16" value="<%=cardno%>"/> <br>
 
                 Amount: <input type="text" name="amount" value="<%=amount%>"/>
 
@@ -150,7 +151,36 @@
                 <p id="erroroutput"></p>
                 <p><%=message%></p>
             </form>
+            
+            <script>
+            window.addEventListener("load", () => {
+
+            // numpad
+            numpad.attach({
+                target: document.getElementById("cardno"),
+                max: 16, // MAX 16 DIGITS
+                decimal: false, // NO DECIMALS ALLOWED
+       
+            });
+            });
+    
+            </script>
+            
+            <script>
+            window.addEventListener("load", () => {
+
+            // numpad
+            numpad.attach({
+                target: document.getElementById("cardno2"),
+                max: 16, // MAX 16 DIGITS
+                decimal: false, // NO DECIMALS ALLOWED
+       
+            });
+            });
+    
+            </script>
 
             <script src="resources/js/validation.js"></script> 
         </body>
-    </html>
+</main>
+<jsp:include page="footer.jsp" />

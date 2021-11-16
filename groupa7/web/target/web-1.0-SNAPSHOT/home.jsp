@@ -93,18 +93,20 @@
         message = "Error connecting to website, please contact admin";
     }
 %>
+<jsp:include page="header.jsp" />
 <main role="main" class="container">
-    <!DOCTYPE html>
-    <html>
+
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <title>JSP Page</title>
+            <link rel="stylesheet" href="./resources/css/numpad-dark.css"/>
+            <script src="./resources/js/numpad.js"></script>
         </head>
         <body>
             <h1>Transfer Money</h1>
 
             <form action="./home.jsp" method="post" id="transactionform" onsubmit="return validate()">
-                Your Card Number: <input type="text" name="cardno" maxlength="16" value="<%=cardno%>"/> <br>
+                Your Card Number: <input type="text" id="cardno" name="cardno" maxlength="16" value="<%=cardno%>"/> <br>
                 Name on Card: <input type="text" name="cardfromname" value="<%=cardfromname%>"/> <br>
                 Expiry date: <input type="text" name="cardfromexpdate" value="<%=cardfromexpdate%>"/> <br>
                 CVV code: <input type="text" name="cardfromcvv" maxlength="3" value="<%=cardfromcvv%>"/> <br> <br>
@@ -119,7 +121,21 @@
                 <p id="erroroutput"></p>
                 <p><%=message%></p>
             </form>
+            <script>
+                window.addEventListener("load", () => {
+
+                // numpad
+                numpad.attach({
+                target: document.getElementById("cardno"),
+                max: 16, // MAX 16 DIGITS
+                decimal: false, // NO DECIMALS ALLOWED
+       
+                    });
+                });
+    
+    </script>
 
             <script src="resources/js/validation.js"></script> 
         </body>
-    </html>
+</main>
+<jsp:include page="footer.jsp" />

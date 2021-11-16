@@ -1,5 +1,8 @@
+document.getElementById("adminforms").style.display = "none";
 
-function login(){
+document.getElementById("adminlogin").addEventListener("submit", event=>{
+    event.preventDefault();
+
     let adminusername = document.forms["adminlogin"]["adminusername"].value;
     let adminpassword = document.forms["adminlogin"]["adminpassword"].value;
 
@@ -18,7 +21,9 @@ function login(){
     }
     
     document.getElementById("erroroutput").innerHTML = result;
-    return !error;
     
-    };
-    
+    if (!error) {
+        document.getElementById("adminforms").style.display = "block";
+        document.getElementById("adminlogin").style.display = "none";
+    }
+});
