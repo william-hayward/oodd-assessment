@@ -1,4 +1,14 @@
-document.getElementById("adminforms").style.display = "none";
+let loggedinrefund = document.forms["transactionform"]["isloggedin"].value;
+let loggedinadmin = document.forms["adminform"]["isloggedin"].value;
+let loggedinurl = document.forms["urlform"]["isloggedin"].value;
+// get the loggedinproperties isloggedin value here
+
+// if loggedinrefund or loggedinproperties has "true", then dont display the login form but show the properties & refund form 
+if (loggedinrefund == "false" || loggedinadmin == "false" || loggedinurl == "false") {
+    document.getElementById("adminforms").style.display = "none";
+} else {
+    document.getElementById("adminlogin").style.display = "none";
+};
 
 document.getElementById("adminlogin").addEventListener("submit", event=>{
     event.preventDefault();
@@ -25,5 +35,7 @@ document.getElementById("adminlogin").addEventListener("submit", event=>{
     if (!error) {
         document.getElementById("adminforms").style.display = "block";
         document.getElementById("adminlogin").style.display = "none";
+        document.forms["adminlogin"]["isloggedin"].value = "true";
+        document.forms["transactionform"]["isloggedin"].value = "true";
     }
 });

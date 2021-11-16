@@ -48,6 +48,8 @@
 
     String amount = request.getParameter("amount");
 
+    String loggedIn = "false";
+    
     String message = "";
 
     try {
@@ -59,7 +61,7 @@
         // get the action
         String action = (String) request.getParameter("action");
         if ("submitadmindetails".equals(action)) {
-
+            loggedIn = "true";
             cardto = (String) request.getParameter("cardto");
             cardtoname = (String) request.getParameter("cardtoname");
             cardtoexpdate = (String) request.getParameter("cardtoexpdate");
@@ -80,7 +82,8 @@
         }
 
         if ("submitrefund".equals(action)) {
-
+            loggedIn = "true";
+            
             fromCard.setCardnumber(cardto);
 
             toCard.setCardnumber(cardno);
@@ -108,6 +111,7 @@
         }
 
         if ("submiturl".equals(action)) {
+            loggedIn = "true";
             message = "url for the bank is set";
             url = (String) request.getParameter("url");
             propertiesDaoFile.setProperty("org.solent.com504.oodd.web.url", url);
@@ -141,7 +145,8 @@
         <div id="adminforms">
             <form action="./adminlogin.jsp" method="post" id="urlform" >
                 URL <input type="text" name="url" value="<%=url%>"/> <br>
-
+                
+                <input type="hidden" name="isloggedin" value="<%=loggedIn%>">
                 <input type="hidden" name="action" value="submiturl">
                 <button type="submit" id="submit" >Submit URL</button>
 
@@ -159,7 +164,7 @@
 
 
 
-
+                <input type="hidden" name="isloggedin" value="<%=loggedIn%>">
                 <input type="hidden" name="action" value="submitadmindetails">
                 <button type="submit" id="submit" >Submit</button>
 
@@ -174,7 +179,7 @@
                 Amount: <input type="text" name="amount" value="<%=amount%>"/>
 
 
-
+                <input type="hidden" name="isloggedin" value="<%=loggedIn%>">
                 <input type="hidden" name="action" value="submitrefund">
                 <button type="submit" id="submit" >Submit</button>
 
