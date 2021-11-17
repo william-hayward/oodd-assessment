@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: org.solent.com504.oodd.bank.client.cardcheck.RegexCardValidatorTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.059 s <<< FAILURE! - in org.solent.com504.oodd.bank.client.cardcheck.RegexCardValidatorTest
+testIsValid(org.solent.com504.oodd.bank.client.cardcheck.RegexCardValidatorTest)  Time elapsed: 0.017 s  <<< FAILURE!
+java.lang.AssertionError: expected:<null> but was:<org.solent.com504.oodd.bank.client.cardcheck.CardValidationResult@10db82ae>
+	at org.solent.com504.oodd.bank.client.cardcheck.RegexCardValidatorTest.testIsValid(RegexCardValidatorTest.java:48)
+

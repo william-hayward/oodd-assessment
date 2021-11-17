@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.solent.com504.oodd.bank.client.model.dto.test.JsonDtoTests" time="0.576" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.solent.com504.oodd.bank.client.test.manual.BankClientTest" time="1.477" tests="2" errors="0" skipped="0" failures="0">
   <properties>
     <property name="sun.desktop" value="windows"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -17,9 +17,9 @@
     <property name="user.country" value="GB"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-11.0.12\bin"/>
-    <property name="sun.java.command" value="C:\Users\acer\AppData\Local\Temp\surefire2210484372661541577\surefirebooter5515047368261744385.jar C:\Users\acer\AppData\Local\Temp\surefire2210484372661541577 2021-11-16T21-45-47_181-jvmRun1 surefire10409035553408980169tmp surefire_09500444656423724414tmp"/>
+    <property name="sun.java.command" value="C:\Users\acer\AppData\Local\Temp\surefire17161671828639231417\surefirebooter6305315912902886239.jar C:\Users\acer\AppData\Local\Temp\surefire17161671828639231417 2021-11-16T21-47-49_331-jvmRun1 surefire9839549058164495903tmp surefire_02823391098452563648tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="test" value="org.solent.com504.oodd.bank.client.model.dto.test.JsonDtoTests"/>
+    <property name="test" value="org.solent.com504.oodd.bank.client.test.manual.BankClientTest"/>
     <property name="surefire.test.class.path" value="C:\Assignment\oodd-assessment-master\groupa7\bank-client\target\test-classes;C:\Assignment\oodd-assessment-master\groupa7\bank-client\target\classes;C:\Users\acer\.m2\repository\org\glassfish\jersey\core\jersey-client\2.32\jersey-client-2.32.jar;C:\Users\acer\.m2\repository\jakarta\ws\rs\jakarta.ws.rs-api\2.1.6\jakarta.ws.rs-api-2.1.6.jar;C:\Users\acer\.m2\repository\org\glassfish\jersey\core\jersey-common\2.32\jersey-common-2.32.jar;C:\Users\acer\.m2\repository\jakarta\annotation\jakarta.annotation-api\1.3.5\jakarta.annotation-api-1.3.5.jar;C:\Users\acer\.m2\repository\org\glassfish\hk2\osgi-resource-locator\1.0.3\osgi-resource-locator-1.0.3.jar;C:\Users\acer\.m2\repository\com\sun\activation\jakarta.activation\1.2.2\jakarta.activation-1.2.2.jar;C:\Users\acer\.m2\repository\org\glassfish\hk2\external\jakarta.inject\2.6.1\jakarta.inject-2.6.1.jar;C:\Users\acer\.m2\repository\org\glassfish\jersey\media\jersey-media-json-jackson\2.32\jersey-media-json-jackson-2.32.jar;C:\Users\acer\.m2\repository\org\glassfish\jersey\ext\jersey-entity-filtering\2.32\jersey-entity-filtering-2.32.jar;C:\Users\acer\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.10.1\jackson-annotations-2.10.1.jar;C:\Users\acer\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.10.1\jackson-databind-2.10.1.jar;C:\Users\acer\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.10.1\jackson-core-2.10.1.jar;C:\Users\acer\.m2\repository\com\fasterxml\jackson\module\jackson-module-jaxb-annotations\2.10.1\jackson-module-jaxb-annotations-2.10.1.jar;C:\Users\acer\.m2\repository\jakarta\xml\bind\jakarta.xml.bind-api\2.3.2\jakarta.xml.bind-api-2.3.2.jar;C:\Users\acer\.m2\repository\jakarta\activation\jakarta.activation-api\1.2.1\jakarta.activation-api-1.2.1.jar;C:\Users\acer\.m2\repository\org\glassfish\jersey\inject\jersey-hk2\2.32\jersey-hk2-2.32.jar;C:\Users\acer\.m2\repository\org\glassfish\hk2\hk2-locator\2.6.1\hk2-locator-2.6.1.jar;C:\Users\acer\.m2\repository\org\glassfish\hk2\external\aopalliance-repackaged\2.6.1\aopalliance-repackaged-2.6.1.jar;C:\Users\acer\.m2\repository\org\glassfish\hk2\hk2-api\2.6.1\hk2-api-2.6.1.jar;C:\Users\acer\.m2\repository\org\glassfish\hk2\hk2-utils\2.6.1\hk2-utils-2.6.1.jar;C:\Users\acer\.m2\repository\org\javassist\javassist\3.25.0-GA\javassist-3.25.0-GA.jar;C:\Users\acer\.m2\repository\org\eclipse\persistence\javax.persistence\2.1.1\javax.persistence-2.1.1.jar;C:\Users\acer\.m2\repository\org\mindrot\jbcrypt\0.4\jbcrypt-0.4.jar;C:\Users\acer\.m2\repository\javax\annotation\javax.annotation-api\1.3.2\javax.annotation-api-1.3.2.jar;C:\Users\acer\.m2\repository\javax\xml\bind\jaxb-api\2.4.0-b180830.0359\jaxb-api-2.4.0-b180830.0359.jar;C:\Users\acer\.m2\repository\javax\activation\javax.activation-api\1.2.0\javax.activation-api-1.2.0.jar;C:\Users\acer\.m2\repository\org\glassfish\jaxb\jaxb-runtime\2.4.0-b180830.0438\jaxb-runtime-2.4.0-b180830.0438.jar;C:\Users\acer\.m2\repository\org\glassfish\jaxb\txw2\2.4.0-b180830.0438\txw2-2.4.0-b180830.0438.jar;C:\Users\acer\.m2\repository\com\sun\istack\istack-commons-runtime\3.0.7\istack-commons-runtime-3.0.7.jar;C:\Users\acer\.m2\repository\org\jvnet\staxex\stax-ex\1.8\stax-ex-1.8.jar;C:\Users\acer\.m2\repository\com\sun\xml\fastinfoset\FastInfoset\1.2.15\FastInfoset-1.2.15.jar;C:\Users\acer\.m2\repository\org\apache\logging\log4j\log4j-api\2.13.3\log4j-api-2.13.3.jar;C:\Users\acer\.m2\repository\org\apache\logging\log4j\log4j-core\2.13.3\log4j-core-2.13.3.jar;C:\Users\acer\.m2\repository\junit\junit\4.12\junit-4.12.jar;C:\Users\acer\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\acer"/>
@@ -34,7 +34,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="C:\Users\acer\AppData\Local\Temp\surefire2210484372661541577\surefirebooter5515047368261744385.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\acer\AppData\Local\Temp\surefire17161671828639231417\surefirebooter6305315912902886239.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="11.0.12+8-LTS-237"/>
@@ -62,5 +62,6 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="55.0"/>
   </properties>
-  <testcase name="testJsonMessages" classname="org.solent.com504.oodd.bank.client.model.dto.test.JsonDtoTests" time="0.177"/>
+  <testcase name="testClientAuth" classname="org.solent.com504.oodd.bank.client.test.manual.BankClientTest" time="0.979"/>
+  <testcase name="testClient" classname="org.solent.com504.oodd.bank.client.test.manual.BankClientTest" time="0.048"/>
 </testsuite>
