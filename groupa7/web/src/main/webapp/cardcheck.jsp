@@ -24,7 +24,7 @@
     <body>
         <h1>Credit Card Check</h1>
         <form action="./cardcheck.jsp" method="post">
-            <input type="text" id="cardno" name="creditcardno" value="<%=creditcardno%>">
+            <input type="text" id="cardno" name="creditcardno">
             <input type="hidden" name="action" value="removeUser">
             <button type="submit" >Check Card</button>
         </form>
@@ -55,8 +55,7 @@
         
         <br>
         <br>
-        <p>Go back to Index Page</P>
-        <a href="./index.html" target="_blank" >Go back</a>
+
     </body>
 </main>
 <jsp:include page="footer.jsp" />

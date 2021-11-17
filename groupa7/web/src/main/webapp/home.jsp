@@ -72,13 +72,13 @@
 
             if (errormessage == null) {
 
-                String logmsg = "Transaction complete with card" + " " + cardno + " " + "for the amount of" + " " + amount;
+                String logmsg = "Transaction complete with card" + " " + cardno + " " + "for the amount of" + " " + amount + "." + "Full report: " + query;
                 Logger.Logger(logmsg);
-                message = "transaction sending";
+                message = "transaction sent successfully";
             } else {
-                String logmsg = "Transaction was unsuccessful with card" + " " + cardno + " " + "for the amount of" + " " + amount + "." + "Error message: " + errormessage;
+                String logmsg = "Transaction was unsuccessful with card" + " " + cardno + " " + "for the amount of" + " " + amount + "." + "Full report: " + query;
                 Logger.Logger(logmsg);
-                message = "transaction failed, Error:" + errormessage;
+                message = "transaction failed, please check or card details or contact admin";
             }
         }
         if ("submitdetails".equals(action)) {
@@ -106,12 +106,12 @@
             <h1>Transfer Money</h1>
 
             <form action="./home.jsp" method="post" id="transactionform" onsubmit="return validate()">
-                Your Card Number: <input type="text" id="cardno" name="cardno" maxlength="16" value="<%=cardno%>"/> <br>
-                Name on Card: <input type="text" name="cardfromname" value="<%=cardfromname%>"/> <br>
-                Expiry date: <input type="text" name="cardfromexpdate" value="<%=cardfromexpdate%>"/> <br>
-                CVV code: <input type="text" name="cardfromcvv" maxlength="3" value="<%=cardfromcvv%>"/> <br> <br>
+                Your Card Number: <input type="text" id="cardno" name="cardno" maxlength="16"/> <br>
+                Name on Card: <input type="text" name="cardfromname"/> <br>
+                Expiry date: <input type="text" name="cardfromexpdate"/> <br>
+                CVV code: <input type="text" name="cardfromcvv" maxlength="3"/> <br> <br>
 
-                Amount: <input type="text" name="amount" value="<%=amount%>"/>
+                Amount: <input type="text" name="amount"/>
 
 
 
