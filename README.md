@@ -1,5 +1,11 @@
 <h1>CreditCardAppG7 Documentation</h1>
 
+<h2 style="text-decoration: underline">Important Information:</h2>
+<p>Admin username: admin<br>
+Admin password: admin</p>
+
+---
+
 <h2 style="text-decoration: underline">Introduction:</h2>
 <p>When creating this project, we decided to work on what we were strongest at. Sophia using html and javascript to do mostly front-end development with creating form fields, form sending, connecting to rest and bank API to make transactions, use case diagram, password protected admin page, customer and admin form validation and a “logged in” attribute. William applied bootstrap to the project, numpad, card checker, and documentation of javadocs and UML diagrams whilst also handling github management. Theodore did mostly back-end development working with properties, dependencies, logging transactions, exception and error handling, refund capabilities and creating tests. </p>
 
