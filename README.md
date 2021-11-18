@@ -17,6 +17,12 @@ Admin password: admin</p>
 
 ---
 
+<h2 style="text-decoration: underline">Robust Diagram:</h2>
+<p>A robust diagram of the project:</p>
+<img src="images/robust_diagram.png">
+
+---
+
 <h2 style="text-decoration: underline">Javadoc:</h2>
 <p>To generate a Javadoc: Right click on the web module and click "generate Javadoc". This will save to an apidocs folder "\groupa7\web\target\site\apidocs\". The Javadoc can be viewed using a web browser (see image below).</p>
 <img src="images/image10.png">
